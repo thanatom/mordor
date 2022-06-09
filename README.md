@@ -175,6 +175,6 @@ The gravitational potential is calculated for every galaxy through direct summat
 
 If you use Mordor in preparing a scientific publication, please cite Zana et al. 2022
 
-Please contact me (tommaso.zana at gmail.com) if you have questio/troubles with `Mordor`.
+Please contact me (tommaso.zana at gmail.com) if you have question/troubles with `Mordor`.
 
 
