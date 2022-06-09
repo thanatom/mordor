@@ -2,7 +2,7 @@
 
 <img src="https://github.com/thanatom/mordor/blob/main/img/bd.jpg" width=10% height=10%> 
 
-`Mordor` (MORphological DecOmposeR) is a `Python` tool to performs a morphology decomposition based on stellar kinematics of simulated galaxies, read through `Pynbody`.
+`Mordor` (MORphological DecOmposeR) is a `Python` tool to perform a morphology decomposition based on stellar kinematics of simulated galaxies, read through `Pynbody`.
 
 <p align="center">
   <img src="https://github.com/thanatom/mordor/blob/main/img/components.png" width=25% height=25%>
@@ -47,7 +47,7 @@ Type
 python mordor.py -h
 ```
 
-to see a quick guide of the usage.
+for a quick description of the usage.
 
 ## Arguments
 
@@ -63,13 +63,13 @@ Options:
 | **-m, --mode**      | *direct*, *pm*, [*tree*], *cosmo_sim*, *iso_sim*, *auxiliary* | gravitational potential computation mode                                                           |
 | **--ShowPlots**     | Boolean [*False*]                                           | show the resulting potential profile and the faceon galaxy-map divided in morphological components |
 | **--DumpPotential** | Boolean [*False*]                                           | dump a file 'potential_ID.npy' with the gravitational potential of the galaxy ID                   |
-| **--LoadOff**       | *ascii*, *bin*, [*None*]                                    | read from the file 'offsets' the space and velocity offsets to centre the galaxy                   |
-| **--DumpOff**       | *ascii*, *bin*, [*None*]                                    | print the file 'offsets' with the space and velocity offsets                                       |
+| **--LoadOff**       | *ascii*, *bin*, [*None*]                                    | read from the file 'offsets' position and velocity of the galaxy centre                   |
+| **--DumpOff**       | *ascii*, *bin*, [*None*]                                    | print the file 'offsets' with position and velocity of the galaxy centre                                       |
 | **--OutPrefix**     | String [morphology]                                         | if a source list is given, the output is redirected to the file 'OUTPREFIX_SrcName'                |
 
 ## Details
 
-`Mordor` can load a galaxy from every snapshot extension supported by `Pynbody`.
+`Mordor` can operate on any snapshot supported by `Pynbody`.
 After the gravitational potential energy is [evaluated](#potential-evaluation), the galaxy is centred and rotated, assuming it's the unique or most massive object in the snapshot.
 The procedure keeps into account that, sometimes, halo-finder algorithms may fail to associate the dark-matter component to satellite galaxies.
 
@@ -85,15 +85,15 @@ where the arguments and parameters are
 
 **gal** - Sim-object. The galaxy to work on.
 
-**Ecut** - energy boundary between bulge/pseudobulge and halo/thick disc. If set to 'None', Ecut is evaluated as the local minimum energy of the particle distribution.
+**Ecut** - energy boundary between bulge/pseudobulge and halo/thick disc. If set to 'None', Ecut is evaluated as the smallest local minimum of the particle energy distribution.
 
 **j_circ_from_r** - circular angular momentum is computed as a function of radius, rather than as a function of orbital energy.
 
 **LogInterp** - use a logarithmic interpolation/extrapolation, instead of a linear one, to evaluate the circular angular momentum.
 
-**BoundOnly** - exclude those particles with $E\geq0$, $\lvert\eta\rvert\geq1.5$, or $\lvert j_{p}/j_{\rm circ}\rvert\geq1.5$.
+**BoundOnly** - exclude particles with $E\geq0$, $\lvert\eta\rvert\geq1.5$, or $\lvert j_{p}/j_{\rm circ}\rvert\geq1.5$.
 
-**mode** - choose amongst *direct*, *pm*, *tree*, *cosmo_sim*, *iso_sim*, or *auxiliary*. If mode is *cosmo_sim*, an offset is applied.
+**mode** - choose amongst *direct*, *pm*, *tree*, *cosmo_sim*, *iso_sim*, or *auxiliary*. If mode is *cosmo_sim*, an offset is applied (see Zana et al. 2022 for details).
 
 **DumpProb** - particles are assigned to the bulge or the halo according to a probabilistic scheme. If DumpProb is enabled, an additional SimArray is created and filled with a float for each stellar particle, where the integer part refers to the alternative morphological component (not assigned) and the decimal part to the probability of assignment. if **prob**$=0$, the particle has been assigned to the only possible component.
 
