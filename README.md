@@ -19,7 +19,6 @@
 - `Scipy` (https://scipy.org/)
 - `Numba` (https://numba.pydata.org/)
 - `Matplotlib` (https://matplotlib.org/)
-- `Struct`
 
 ## Quick Start
 
@@ -83,7 +82,7 @@ The actual decomposition is performed by the function
 
 where the arguments and parameters are
 
-**gal** - Sim-object. The galaxy to work on.
+**gal** - Sim-object. The galaxy to analyse.
 
 **Ecut** - energy boundary between bulge/pseudobulge and halo/thick disc. If set to 'None', Ecut is evaluated as the smallest local minimum of the particle energy distribution.
 
@@ -95,13 +94,13 @@ where the arguments and parameters are
 
 **mode** - choose amongst *direct*, *pm*, *tree*, *cosmo_sim*, *iso_sim*, or *auxiliary*. If mode is *cosmo_sim*, an offset is applied (see Zana et al. 2022 for details).
 
-**DumpProb** - particles are assigned to the bulge or the halo according to a probabilistic scheme. If DumpProb is enabled, an additional SimArray is created and filled with a float for each stellar particle, where the integer part refers to the alternative morphological component (not assigned) and the decimal part to the probability of assignment. if **prob**$=0$, the particle has been assigned to the only possible component.
+**DumpProb** - particles falling in overlapping regions of the circularity distribution are assigned to the spheroidal components (bulge or halo) according to a probabilistic scheme. If DumpProb is enabled, an additional SimArray is created and filled with a float for each stellar particle, where the integer part refers to the alternative morphological component (not assigned) and the decimal part to the probability of assignment. if **prob**$=0$, the particle has been assigned to the only possible component.
 
 **j_disc_min** - minimum angular momentum (in terms of the circular angular momentum) that a particle must have to be part of the 'thin disc' component. Default is 0.7.
 
-**theta** - opening angle of the tree to tune force computation accuracy when mode is 'tree'. Default is 0.5.
+**theta** - opening angle for gravitational force calculation when mode is set on 'tree'. It tunes the accuracy of the force evaluation. Default is 0.5.
 
-**dimcell** - cubic cell side. When mode is *pm*. Default is 1 kpc.
+**dimcell** - size of the grid spacing when mode is set on *pm*. Default is 1 kpc.
 
 This function produces a SimArray, named **morph**, where an integer from 0 to 5 is assigned to each star particle, to identify a morpho-kinematic component:
 
@@ -146,9 +145,9 @@ The options are:
 | Type                    | Keyword        | Description                                                                                                                                                                                                                                                                                                                                              |
 |-------------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Direct summation        | direct         | the potential is recomputed via direct summation. This is the most CPU-expensive and accurate way available.                                                                                                                                                                                                                                             |
-| Particle-mesh           | pm             | the potential is computed via the FFT of the particle density field on a Cartesian uniform grid. The method is based on a `Pynbody` routine. Faster than the direct mode but memory-expensive. It may fail to construct the grid when **BoundOnly**=True                                                                                                 |
+| Particle-mesh           | pm             | the potential is computed via the FFT of the particle density field on a Cartesian uniform grid. The method is based on a `Pynbody` routine. Faster than the direct mode but memory-expensive. It may fail to construct the grid when **BoundOnly**=False                                                                                                 |
 | KD-tree                 | tree [default] | the potential is recomputed via a KD-tree. It is based on a suitably modified version of `Pytreegrav` (https://github.com/mikegrudic/pytreegrav)  and gives very accurate results at a reasonable computational cost.                                                                                                                                    |
-| Cosmological simulation | cosmo_sim      | the potential is directly loaded from the snapshot, which is to belong to a cosmological simulation. When the midplane potential is recalculated  "in isolation", an offset is automatically applied to account for the large-scale matter distribution.                                                                                                 |
+| Cosmological simulation | cosmo_sim      | the potential is directly loaded from the snapshot, which has to belong to a cosmological simulation. When the midplane potential is recalculated  "in isolation", an offset is automatically applied to account for the large-scale matter distribution.                                                                                                 |
 | Isolated simulation     | iso_sim        | the potential is directly loaded from the snapshot, but it is assumed to come from an isolated simulation. The mode can even be exploited by  recomputing the potential of a galaxy that formed in a fully cosmological simulation, as it is in isolation. This approach would take advantage of the strongly parallelised nature of modern cosmo-codes. |
 | Auxiliary file          | auxiliary      | the potential is loaded from an auxiliary file named potential_ID.npy in km$^2$ s$^{-2}$, ordered according to the particle ids. Auxiliary files can be created by `Mordor` itself though the option **--DumpPotential**, to speed up future calculations.                                                                                                       |
 
