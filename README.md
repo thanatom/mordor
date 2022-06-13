@@ -172,7 +172,23 @@ The gravitational potential is calculated for every galaxy through direct summat
 
 ## Credit and support
 
-If you use Mordor in preparing a scientific publication, please cite Zana et al. 2022
+If you use Mordor in preparing a scientific publication, please cite the following BibTex entry:
+
+	@ARTICLE{mordor,
+		author = {{Zana}, Tommaso and {Lupi}, Alessandro and {Bonetti}, Matteo and {Dotti}, Massimo and {Rosas-Guevara}, Yetli and {Izquierdo-Villalba}, 	David and {Bonoli}, Silvia and {Hernquist}, Lars and {Nelson}, Dylan},
+		title = "{Morphological decomposition of TNG50 galaxies: methodology and catalogue}",
+		journal = {arXiv e-prints},
+		keywords = {Astrophysics - Astrophysics of Galaxies, Astrophysics - Instrumentation and Methods for Astrophysics},
+		year = 2022,
+		month = jun,
+		eid = {arXiv:2206.04693},
+		pages = {arXiv:2206.04693},
+		archivePrefix = {arXiv},
+		eprint = {2206.04693},
+		primaryClass = {astro-ph.GA},
+		adsurl = {https://ui.adsabs.harvard.edu/abs/2022arXiv220604693Z},
+		adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+	}
 
 Please contact me (tommaso.zana at gmail.com) if you have question/troubles with `Mordor`.
 
