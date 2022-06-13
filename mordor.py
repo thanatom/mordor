@@ -6,7 +6,7 @@ import gravity
 
 '''
 Mordor (MORphological DecOmposeR) performs a morphology decomposition based on stellar kinematics,
-of simulated galaxies, read through pynbody (see Zana et al. 2022)
+of simulated galaxies, read through pynbody (see Zana et al. 2022 at https://arxiv.org/abs/2206.04693)
 
 Mordor input is a file of a simulated galaxy (all formats readable with pynbody are accepted) or a list of files of simulated galaxies.
 The files should be named 'PREFIX_ID.EXTENSION' (e.g. Gal_000000.hdf5).
