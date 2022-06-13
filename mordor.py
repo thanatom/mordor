@@ -182,7 +182,6 @@ for filename in filenames:
 	#Define the softening as the Plummer-equivalent radius if not present
 	if 'eps' not in gal:
 		gal['eps'] = pynbody.array.SimArray(2.8*gsoft(gal.properties['z'])*np.ones_like(gal['x'], dtype=gal['x'].dtype),'kpc')
-	print(gal['eps'])
 
 #--------------------------------------------------------------------------------------------------------
 
