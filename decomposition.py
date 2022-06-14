@@ -246,7 +246,7 @@ def morph(gal, j_circ_from_r=False, LogInterp=False, BoundOnly=False, Ecut=None,
 
 #-------
 
-	#Compute thecircularity
+	#Compute the circularity
 	gal['jz_by_jzcirc'] = gal['j'][:, 2] / gal['j_circ']
 	g_star = gal.star
 
