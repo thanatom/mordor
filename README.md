@@ -7,8 +7,10 @@
 <p align="center">
   <img src="https://github.com/thanatom/mordor/blob/main/img/components.png" width=25% height=25%>
 </p>
-  
+
 > NB: The current version of the package does not include the bar identification algorithm. If you are interested, please contact me at tommaso.zana at gmail.com
+
+This version contains slight improvments to the circularity calculation with respect to Zana et al. 2022.
 
 ## Dependencies
 
