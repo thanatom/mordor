@@ -1,4 +1,5 @@
-from numba import deferred_type, optional, prange, float32, float64, boolean, int64, njit, jitclass
+from numba import deferred_type, optional, prange, float32, float64, boolean, int64, njit
+from numba.experimental import jitclass
 from pynbody import array, units
 import numpy as np
 
